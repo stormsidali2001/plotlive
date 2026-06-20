@@ -1,5 +1,5 @@
 import pytest
-from mathplotgame.colors import to_rgba, get_cmap
+from plotlive.colors import to_rgba, get_cmap
 
 
 def test_named():

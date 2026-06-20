@@ -1,4 +1,4 @@
-# mathplotgame — codebase guide
+# plotlive — codebase guide
 
 Interactive matplotlib-compatible graphs rendered with pygame-ce. Drop-in replacement for the most common `matplotlib.pyplot` patterns; renders a live, pannable, zoomable window instead of a static plot.
 

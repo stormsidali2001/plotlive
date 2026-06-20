@@ -1,6 +1,6 @@
-# How mathplotgame works
+# How plotlive works
 
-mathplotgame is a thin layer that lets you write standard matplotlib code and get an interactive pygame window instead of a static image. This post walks through every major architectural decision — why each layer exists, how the pieces fit together, and where the tricky parts live.
+plotlive is a thin layer that lets you write standard matplotlib code and get an interactive pygame window instead of a static image. This post walks through every major architectural decision — why each layer exists, how the pieces fit together, and where the tricky parts live.
 
 ---
 
@@ -9,7 +9,7 @@ mathplotgame is a thin layer that lets you write standard matplotlib code and ge
 Run this matplotlib code:
 
 ```python
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 plt.plot([1, 2, 3], [4, 5, 6], label='data')
 plt.legend()
 plt.show()

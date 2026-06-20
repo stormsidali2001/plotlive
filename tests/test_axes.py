@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from mathplotgame.figure import Figure
+from plotlive.figure import Figure
 
 
 def make_fig_ax():
@@ -79,7 +79,7 @@ def test_subplots_squeeze():
     fig = Figure()
     _, ax = fig.subplots(1, 1, squeeze=True)
     # Should return a single Axes, not an array
-    from mathplotgame.axes import Axes
+    from plotlive.axes import Axes
     assert isinstance(ax, Axes)
 
 

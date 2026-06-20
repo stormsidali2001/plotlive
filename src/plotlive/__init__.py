@@ -1,8 +1,8 @@
 """
-mathplotgame — Interactive matplotlib-compatible graphs rendered with pygame.
+plotlive — Interactive matplotlib-compatible graphs rendered with pygame.
 
 Usage:
-    import mathplotgame.pyplot as plt
+    import plotlive.pyplot as plt
     import numpy as np
 
     plt.plot([1, 2, 3], [4, 5, 6], label='data')

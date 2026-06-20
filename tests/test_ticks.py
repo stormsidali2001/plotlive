@@ -1,4 +1,4 @@
-from mathplotgame.ticks import auto_ticks, format_tick, format_ticks
+from plotlive.ticks import auto_ticks, format_tick, format_ticks
 
 
 def test_basic():

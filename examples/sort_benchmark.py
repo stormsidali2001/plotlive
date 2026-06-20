@@ -14,7 +14,7 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 import numpy as np
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 
 
 # ── Pure Python in-place implementations (no C extensions, fair comparison) ───

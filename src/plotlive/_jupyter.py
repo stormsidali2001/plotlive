@@ -1,5 +1,5 @@
 """
-mathplotgame._jupyter — inline display helpers for Jupyter notebooks.
+plotlive._jupyter — inline display helpers for Jupyter notebooks.
 
 This module is imported lazily inside pyplot.show() only when a Jupyter
 kernel is detected, so it never affects the normal pygame path.

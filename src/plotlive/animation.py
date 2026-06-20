@@ -98,7 +98,7 @@ class FuncAnimation:
 
     Matches the ``matplotlib.animation.FuncAnimation`` interface exactly::
 
-        from mathplotgame.animation import FuncAnimation
+        from plotlive.animation import FuncAnimation
         anim = FuncAnimation(fig, update, frames=50, interval=200)
         anim.save('output.gif')
 

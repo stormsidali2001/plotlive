@@ -12,9 +12,9 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 import numpy as np
-import mathplotgame.pyplot as plt
-from mathplotgame.artists import Rectangle
-from mathplotgame.colors import to_rgba
+import plotlive.pyplot as plt
+from plotlive.artists import Rectangle
+from plotlive.colors import to_rgba
 
 # ── Color palette ─────────────────────────────────────────────────────────────
 C_DEFAULT = '#4C72B0'   # unsorted

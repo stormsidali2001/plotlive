@@ -1,4 +1,4 @@
-# mathplotgame
+# plotlive
 
 Interactive matplotlib-compatible graphs rendered with pygame. Write the same code you'd write for matplotlib — get a live, interactive window instead of a static plot.
 
@@ -15,7 +15,7 @@ pip3 install -e .
 ## Quick start
 
 ```python
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 import numpy as np
 
 x = np.arange(50)
@@ -160,7 +160,7 @@ plt.show()                              # interactive window opens afterwards
 The animation class matches `matplotlib.animation.FuncAnimation` exactly, so existing matplotlib animation code runs unchanged:
 
 ```python
-from mathplotgame.animation import FuncAnimation
+from plotlive.animation import FuncAnimation
 
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
@@ -212,9 +212,9 @@ Export any animation to a GIF or video file without opening a window.
 ### Install
 
 ```bash
-pip install mathplotgame[gif]           # GIF support  (Pillow)
-pip install mathplotgame[video]         # MP4/MOV/AVI  (imageio + ffmpeg)
-pip install mathplotgame[export]        # both
+pip install plotlive[gif]           # GIF support  (Pillow)
+pip install plotlive[video]         # MP4/MOV/AVI  (imageio + ffmpeg)
+pip install plotlive[export]        # both
 ```
 
 Or install the optional dependency directly:
@@ -227,7 +227,7 @@ pip install imageio[ffmpeg]             # for MP4 / MOV / AVI
 ### Usage
 
 ```python
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 import numpy as np
 
 x = np.linspace(-3, 3, 200)
@@ -272,7 +272,7 @@ Run this one-liner — no window opens, it just renders and saves:
 ```bash
 python3 -c "
 import sys; sys.path.insert(0, 'src')
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 x = np.linspace(-3, 3, 200); w = [2.5]
 def update(frame):
     w[0] -= 0.15 * 2 * w[0]; plt.cla()
@@ -304,7 +304,7 @@ source ../.venv/bin/activate
 #### Training curves
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 x = np.arange(50)
 plt.plot(x, np.exp(-x/10), label='train loss')
 plt.plot(x, np.exp(-x/12) + 0.05*np.random.randn(50), label='val loss')
@@ -317,7 +317,7 @@ plt.legend(); plt.grid(); plt.show()
 #### Confusion matrix
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 cm = np.array([[50,2,1],[3,45,5],[2,4,48]])
 fig, ax = plt.subplots()
 im = ax.imshow(cm, cmap='Blues')
@@ -328,7 +328,7 @@ plt.colorbar(im, ax=ax); ax.set_title('Confusion Matrix'); plt.show()
 #### Feature importance + error bars
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 feats = ['age','income','tenure','score','region']
 vals  = [0.40, 0.30, 0.18, 0.08, 0.04]
 errs  = [0.04, 0.03, 0.02, 0.01, 0.005]
@@ -341,7 +341,7 @@ plt.xlabel('Importance'); plt.title('Feature Importance ± std'); plt.show()
 #### Distribution comparison — box + violin
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(0)
 data = [np.random.normal(m, s, 120) for m, s in [(0,1),(1,1.5),(3,0.5),(-1,2)]]
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 5))
@@ -354,7 +354,7 @@ plt.show()
 #### Correlation heatmap
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(0)
 corr = np.corrcoef(np.random.randn(5, 100))
 fig, ax = plt.subplots(figsize=(6,5))
@@ -366,7 +366,7 @@ plt.colorbar(im, ax=ax); ax.set_title('Correlation Matrix'); plt.show()
 #### Stacked area — class proportions over time
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 x = np.arange(20)
 a = np.random.dirichlet([3,2,1], 20).T
 plt.stackplot(x, a[0], a[1], a[2], labels=['Class A','Class B','Class C'], alpha=0.85)
@@ -378,7 +378,7 @@ plt.legend(); plt.show()
 #### Pie chart — class balance
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 plt.pie([52, 31, 17], labels=['Negative','Neutral','Positive'], startangle=90)
 plt.title('Sentiment Distribution'); plt.legend(); plt.show()
 "
@@ -393,7 +393,7 @@ Animations **start paused**. Press `Space` to play, `←` / `→` to step frame 
 #### Gradient descent
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 x = np.linspace(-3, 3, 200); w = [2.5]
 def update(frame):
     plt.cla(); w[0] -= 0.15 * 2 * w[0]
@@ -408,7 +408,7 @@ plt.animate(update, frames=25, interval=200); plt.show()
 #### K-means clustering
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(7); K=3
 data = np.vstack([np.random.randn(60,2)*0.7+c for c in [(-2,-2),(2,-2),(0,2)]])
 centroids = data[np.random.choice(len(data),K,replace=False)].copy()
@@ -429,7 +429,7 @@ Trains a softmax classifier with gradient descent and draws the three learned de
 
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 
 np.random.seed(0)
 K = 3
@@ -483,7 +483,7 @@ plt.show()
 Export to GIF:
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(0); K=3
 X=np.vstack([np.random.randn(50,2)*0.8+c for c in [(-2,-1),(2,-1),(0,2.5)]])
 y=np.repeat(np.arange(K),50); W=np.zeros((2,K)); b=np.zeros(K)
@@ -520,7 +520,7 @@ Watch how eight straight lines, each specialising on a different slice of the sp
 
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 
 np.random.seed(0)
 n_h = 8
@@ -594,7 +594,7 @@ plt.show()
 #### Neural network training curves
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(1); losses, accs = [], []
 def update(frame):
     t = frame/80
@@ -612,7 +612,7 @@ plt.animate(update, frames=80, interval=80); plt.show()
 #### fill_between — confidence band widening under distribution shift
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(0)
 x = np.linspace(0, 10, 80)
 mean = np.sin(x) * np.exp(-x/8)
@@ -632,7 +632,7 @@ plt.animate(update, frames=30, interval=150); plt.show()
 #### errorbar — learning curve: accuracy rises, uncertainty shrinks with more data
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(0)
 sizes = np.array([10, 25, 50, 100, 200, 400, 800])
 means = 1 - 0.88*np.exp(-sizes/120) + 0.015*np.random.randn(len(sizes))
@@ -652,7 +652,7 @@ plt.animate(update, frames=len(sizes), interval=600); plt.show()
 #### boxplot — prediction distribution tightens as model trains
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(1)
 epochs = [5, 10, 20, 40, 80, 160]
 data = [np.random.normal(0.35 + 0.55*(i/len(epochs)), max(0.28 - i*0.04, 0.04), 80)
@@ -671,7 +671,7 @@ plt.animate(update, frames=len(epochs), interval=700); plt.show()
 #### violinplot — activation distribution shifts as layers train
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(2)
 steps = 6
 data = [np.random.normal(i*0.5, max(1.1 - i*0.16, 0.15), 120) for i in range(steps)]
@@ -689,7 +689,7 @@ plt.animate(update, frames=steps, interval=700); plt.show()
 #### pie — class proportions shift as dataset is rebalanced
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt
+import plotlive.pyplot as plt
 labels = ['Negative', 'Neutral', 'Positive']
 stages = [[70,20,10],[60,25,15],[50,30,20],[45,32,23],[40,35,25],[33,34,33]]
 captions = ['raw','oversample pos','oversample more','near balance','balanced','uniform']
@@ -706,7 +706,7 @@ plt.animate(update, frames=len(stages), interval=900); plt.show()
 #### stackplot — feature contributions accumulate as model complexity grows
 ```bash
 python3 -c "
-import mathplotgame.pyplot as plt, numpy as np
+import plotlive.pyplot as plt, numpy as np
 np.random.seed(3)
 x = np.arange(20)
 feats = ['linear','interactions','polynomials','residuals']

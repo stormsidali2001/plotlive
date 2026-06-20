@@ -1,5 +1,5 @@
 """
-mathplotgame.pyplot — drop-in state machine API for matplotlib.pyplot.
+plotlive.pyplot — drop-in state machine API for matplotlib.pyplot.
 """
 from __future__ import annotations
 import numpy as np
@@ -235,7 +235,7 @@ def animate(update_fn, frames=None, interval: int = 200,
 
     For full matplotlib compatibility, construct FuncAnimation directly::
 
-        from mathplotgame.animation import FuncAnimation
+        from plotlive.animation import FuncAnimation
         anim = FuncAnimation(fig, update, frames=50, interval=200)
     """
     if fig is None:
@@ -284,7 +284,7 @@ def show(block: bool = True) -> None:
         pygame.init()
 
     screen = pygame.display.set_mode(fig.pixel_size, pygame.RESIZABLE)
-    pygame.display.set_caption('mathplotgame')
+    pygame.display.set_caption('plotlive')
     clock = pygame.time.Clock()
     state = InteractionState(fig)
 

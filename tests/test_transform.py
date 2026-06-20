@@ -1,5 +1,5 @@
 import numpy as np
-from mathplotgame.transform import Transform
+from plotlive.transform import Transform
 
 
 def make_transform():
