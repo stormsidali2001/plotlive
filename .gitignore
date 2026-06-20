@@ -40,6 +40,9 @@ MANIFEST
 # Hatch
 .hatch/
 
+# MkDocs
+site/
+
 # macOS
 .DS_Store
 .AppleDouble

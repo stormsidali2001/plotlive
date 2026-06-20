@@ -36,9 +36,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-gif   = ["Pillow>=9.0"]
-video = ["imageio[ffmpeg]>=2.20"]
+gif    = ["Pillow>=9.0"]
+video  = ["imageio[ffmpeg]>=2.20"]
 export = ["Pillow>=9.0", "imageio[ffmpeg]>=2.20"]
+docs   = ["mkdocs-material>=9.5", "mkdocstrings[python]>=0.25"]
 
 [project.urls]
 Homepage   = "https://github.com/assoulsidali/plotlive"
