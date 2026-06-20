@@ -5,9 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/assoulsidali/plotlive/actions/workflows/ci.yml/badge.svg)](https://github.com/assoulsidali/plotlive/actions)
 
-Interactive matplotlib-compatible graphs rendered with pygame. Write the same code you'd write for matplotlib — get a live, interactive window instead of a static plot.
+`import plotlive.pyplot as plt` — same API as matplotlib, but `plt.show()` opens a live pygame window you can pan, zoom, and step through frame by frame.
 
-Built for ML tutorial creators who want to explain concepts step by step with pan, zoom, hover tooltips, and frame-by-frame animation.
+Built for ML educators who write tutorial code in matplotlib and want the plots to be interactive without switching libraries or learning a new API.
 
 ## Install
 
@@ -44,10 +44,7 @@ plt.show()
 
 ## Jupyter support
 
-`plt.show()` detects Jupyter automatically — no code changes needed.
-
-- **Static plots** are displayed as inline PNG images
-- **Animations** are exported as an animated GIF and displayed inline (requires `pip install plotlive[gif]`), with MP4 as fallback
+`plt.show()` detects the Jupyter kernel and switches to inline display. No config, no different import. Static plots come out as PNG; animations export as GIF (requires `plotlive[gif]`) or MP4 if Pillow isn't installed.
 
 ```python
 import plotlive.pyplot as plt
@@ -95,9 +92,9 @@ plt.show()
 | `S` | Save current frame as `frame_NNNN.png` |
 | `Esc` | Close the help panel |
 
-**Animations start paused.** Press `Space` to begin. Use `←` / `→` to step one frame at a time.
+Animations start paused. Press `Space` to play, `←` / `→` to step one frame at a time.
 
-Each subplot is independently interactive — zoom and pan apply only to the subplot your cursor is over.
+Zoom and pan apply to whichever subplot your cursor is over — each one is independent.
 
 ---
 
@@ -198,7 +195,7 @@ plt.show()                              # interactive window opens afterwards
 
 ### FuncAnimation — matplotlib-compatible
 
-The animation class matches `matplotlib.animation.FuncAnimation` exactly, so existing matplotlib animation code runs unchanged:
+Matches `matplotlib.animation.FuncAnimation` — existing animation code works as-is:
 
 ```python
 from plotlive.animation import FuncAnimation
@@ -230,7 +227,7 @@ All constructor parameters are supported:
 | `repeat` | `True` | Loop when finished |
 | `blit` | `False` | Accepted, not used (full redraw always) |
 
-`frames` as a list passes the list values directly to `func` — matching matplotlib's behaviour:
+`frames` as a list passes values directly to `func`, not the index:
 
 ```python
 # func receives 0.0, 0.5, 1.0, 1.5, … not the list index
@@ -248,7 +245,7 @@ plt.show()
 
 ## Animation export
 
-Export any animation to a GIF or video file without opening a window.
+Export any animation to a file without opening a window. Useful for embedding in slides or sharing with people who don't have plotlive installed.
 
 ### Install
 
@@ -288,7 +285,7 @@ plt.save_animation('gradient_descent.gif')  # export first
 plt.show()                                   # then open interactive window
 ```
 
-`save_animation` renders all frames off-screen — no window appears during export. After saving it restores the figure to frame 0 so the subsequent `show()` opens at the beginning.
+`save_animation` renders all frames off-screen. After saving, the figure resets to frame 0 so a subsequent `show()` starts from the beginning.
 
 Supported formats: `.gif` · `.mp4` · `.mov` · `.avi` · `.webm`
 
@@ -325,7 +322,7 @@ plt.save_animation('gradient_descent.gif')
 "
 ```
 
-You should see frame progress printed to the terminal and a `gradient_descent.gif` appear in the current directory. Open it in any browser or image viewer to confirm it animates.
+Frame progress prints to the terminal and `gradient_descent.gif` appears in the current directory.
 
 ---
 
@@ -555,9 +552,7 @@ plt.save_animation('classification.gif')
 
 #### Neural network — hidden unit boundaries (ReLU)
 
-Trains a 1-hidden-layer ReLU network on the two-moon dataset. Each subplot shows one hidden unit: the **shaded region** is where that unit fires (ReLU active), and the **black line** is its learned linear boundary. The output weight `w=` in the title shows how much each unit contributes to the final prediction.
-
-Watch how eight straight lines, each specialising on a different slice of the space, combine to form the curved decision boundary needed to separate the two moons. Double-click any subplot to expand it with **focus mode**.
+Trains a 1-hidden-layer ReLU network on the two-moon dataset. Each subplot is one hidden unit — the shaded region is where it fires, the black line is its decision boundary, and `w=` is its output weight. Eight straight cuts combine into the curve that separates the moons. Double-click any subplot to expand it.
 
 ```bash
 python3 -c "
