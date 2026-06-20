@@ -5,9 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/assoulsidali/plotlive/actions/workflows/ci.yml/badge.svg)](https://github.com/assoulsidali/plotlive/actions)
 
-`import plotlive.pyplot as plt` — same API as matplotlib, but `plt.show()` opens a live pygame window you can pan, zoom, and step through frame by frame.
+matplotlib pyplot API with a live interactive window. Pan, zoom, hover over points for tooltips, and step through animations frame by frame.
 
-Built for ML educators who write tutorial code in matplotlib and want the plots to be interactive without switching libraries or learning a new API.
+Works with existing matplotlib tutorial code. No API to learn, no imports to change.
 
 ## Install
 
@@ -94,25 +94,25 @@ plt.show()
 
 Animations start paused. Press `Space` to play, `←` / `→` to step one frame at a time.
 
-Zoom and pan apply to whichever subplot your cursor is over — each one is independent.
+Zoom and pan apply to whichever subplot the cursor is over. Each subplot is independent.
 
 ---
 
 ## Supported plot types
 
-| Function | EDA use case |
-|----------|-------------|
-| `plt.plot(x, y)` | Line plots — training curves, time series |
-| `plt.scatter(x, y, c=labels)` | Scatter — clusters, feature relationships |
-| `plt.hist(data, bins=20)` | Histogram — feature distributions |
-| `plt.bar(x, height)` / `plt.barh(y, width)` | Bar charts — feature importance, class counts |
-| `plt.imshow(matrix, cmap='Blues')` | Heatmap — confusion matrix, correlation |
-| `plt.boxplot(data)` | Box plot — distribution summary + outliers |
-| `plt.violinplot(data)` | Violin plot — full distribution shape per group |
-| `plt.fill_between(x, y1, y2)` | Shaded area — confidence bands, regions |
-| `plt.errorbar(x, y, yerr=std)` | Error bars — mean ± std / confidence |
-| `plt.stackplot(x, y1, y2, y3)` | Stacked area — cumulative contributions |
-| `plt.pie(values, labels=...)` | Pie chart — class proportions |
+| Function | Common use |
+|----------|------------|
+| `plt.plot(x, y)` | Training curves, time series |
+| `plt.scatter(x, y, c=labels)` | Clusters, feature relationships |
+| `plt.hist(data, bins=20)` | Feature distributions |
+| `plt.bar(x, height)` / `plt.barh(y, width)` | Feature importance, class counts |
+| `plt.imshow(matrix, cmap='Blues')` | Confusion matrix, correlation heatmap |
+| `plt.boxplot(data)` | Distribution summary with outliers |
+| `plt.violinplot(data)` | Full distribution shape per group |
+| `plt.fill_between(x, y1, y2)` | Confidence bands |
+| `plt.errorbar(x, y, yerr=std)` | Mean with error bars |
+| `plt.stackplot(x, y1, y2, y3)` | Cumulative contributions |
+| `plt.pie(values, labels=...)` | Class proportions |
 
 ---
 
@@ -195,7 +195,7 @@ plt.show()                              # interactive window opens afterwards
 
 ### FuncAnimation — matplotlib-compatible
 
-Matches `matplotlib.animation.FuncAnimation` — existing animation code works as-is:
+Matches `matplotlib.animation.FuncAnimation`. Existing animation code works as-is:
 
 ```python
 from plotlive.animation import FuncAnimation
@@ -401,7 +401,7 @@ plt.colorbar(im, ax=ax); ax.set_title('Correlation Matrix'); plt.show()
 "
 ```
 
-#### Stacked area — class proportions over time
+#### Stacked area: class proportions over time
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -426,7 +426,7 @@ plt.title('Sentiment Distribution'); plt.legend(); plt.show()
 
 ### Animated examples
 
-Animations **start paused**. Press `Space` to play, `←` / `→` to step frame by frame, `S` to save.
+Animations start paused. Press `Space` to play, `←` / `→` to step frame by frame, `S` to save a frame.
 
 #### Gradient descent
 ```bash
@@ -463,7 +463,7 @@ plt.animate(update, frames=12, interval=500); plt.show()
 
 #### Multi-class classification boundaries
 
-Trains a softmax classifier with gradient descent and draws the three learned decision boundary lines (one per pair of classes). Each class uses a distinct marker shape. Watch the lines rotate into place as accuracy climbs.
+Softmax classifier trained with gradient descent. Three decision boundaries, one per class pair. The lines rotate into place as accuracy climbs.
 
 ```bash
 python3 -c "
@@ -552,7 +552,7 @@ plt.save_animation('classification.gif')
 
 #### Neural network — hidden unit boundaries (ReLU)
 
-Trains a 1-hidden-layer ReLU network on the two-moon dataset. Each subplot is one hidden unit — the shaded region is where it fires, the black line is its decision boundary, and `w=` is its output weight. Eight straight cuts combine into the curve that separates the moons. Double-click any subplot to expand it.
+Trains a 1-hidden-layer ReLU network on the two-moon dataset. Each subplot is one hidden unit. The shaded region is where it fires, the black line is its decision boundary, and `w=` is its output weight. Eight straight cuts combine into the curve that separates the moons. Double-click any subplot to expand it.
 
 ```bash
 python3 -c "
@@ -645,7 +645,7 @@ plt.animate(update, frames=80, interval=80); plt.show()
 "
 ```
 
-#### fill_between — confidence band widening under distribution shift
+#### fill_between: confidence band widening under distribution shift
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -665,7 +665,7 @@ plt.animate(update, frames=30, interval=150); plt.show()
 "
 ```
 
-#### errorbar — learning curve: accuracy rises, uncertainty shrinks with more data
+#### errorbar: learning curve
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -685,7 +685,7 @@ plt.animate(update, frames=len(sizes), interval=600); plt.show()
 "
 ```
 
-#### boxplot — prediction distribution tightens as model trains
+#### boxplot: prediction distribution per epoch
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -704,7 +704,7 @@ plt.animate(update, frames=len(epochs), interval=700); plt.show()
 "
 ```
 
-#### violinplot — activation distribution shifts as layers train
+#### violinplot: activation distribution per training step
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -722,7 +722,7 @@ plt.animate(update, frames=steps, interval=700); plt.show()
 "
 ```
 
-#### pie — class proportions shift as dataset is rebalanced
+#### pie: class balance as dataset is rebalanced
 ```bash
 python3 -c "
 import plotlive.pyplot as plt
@@ -739,7 +739,7 @@ plt.animate(update, frames=len(stages), interval=900); plt.show()
 "
 ```
 
-#### stackplot — feature contributions accumulate as model complexity grows
+#### stackplot: feature contributions per complexity level
 ```bash
 python3 -c "
 import plotlive.pyplot as plt, numpy as np
@@ -789,7 +789,7 @@ Use `←` / `→` to step frame by frame. The value of each element is shown bel
 python3 sort_benchmark.py
 ```
 
-Benchmarks all 6 in the terminal first, then opens an animated log-scale line chart that reveals one input size at a time. Watch O(n²) and O(n log n) algorithms diverge as N grows.
+Benchmarks all 6 in the terminal, then opens an animated log-scale chart that adds one input size per frame. O(n²) and O(n log n) curves diverge visibly as N grows.
 
 ---
 
