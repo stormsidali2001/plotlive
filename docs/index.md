@@ -2,7 +2,7 @@
 
 `import plotlive.pyplot as plt` — same API as matplotlib, but `plt.show()` opens a live pygame window you can pan, zoom, and step through frame by frame.
 
-Built for ML educators who write tutorial code in matplotlib and want the plots to be interactive without switching libraries.
+![Softmax classifier training](assets/demo.gif)
 
 ## Install
 

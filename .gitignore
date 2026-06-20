@@ -65,3 +65,8 @@ site/
 *.png
 frame_*.png
 out.*
+
+# Keep docs assets
+!docs/assets/*.gif
+!docs/assets/*.mp4
+!docs/assets/*.png

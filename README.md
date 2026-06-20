@@ -9,6 +9,8 @@ matplotlib pyplot API with a live interactive window. Pan, zoom, hover over poin
 
 Works with existing matplotlib tutorial code. No API to learn, no imports to change.
 
+![Softmax classifier training](docs/assets/demo.gif)
+
 ## Install
 
 ```bash
