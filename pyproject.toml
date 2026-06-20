@@ -6,7 +6,30 @@ build-backend = "hatchling.build"
 name = "mathplotgame"
 version = "0.1.0"
 description = "Interactive matplotlib-compatible graphs rendered with pygame"
+readme = "README.md"
+license = { text = "MIT" }
 requires-python = ">=3.10"
+authors = [
+    { name = "Sidali Assoul", email = "assoulsidali@gmail.com" },
+]
+keywords = [
+    "matplotlib", "pygame", "visualization", "interactive", "animation",
+    "machine-learning", "tutorial", "plotting",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Education",
+]
 dependencies = [
     "pygame-ce>=2.4.0",
     "numpy>=1.24.0",
@@ -17,9 +40,13 @@ gif   = ["Pillow>=9.0"]
 video = ["imageio[ffmpeg]>=2.20"]
 export = ["Pillow>=9.0", "imageio[ffmpeg]>=2.20"]
 
+[project.urls]
+Homepage   = "https://github.com/assoulsidali/mathplotgame"
+Repository = "https://github.com/assoulsidali/mathplotgame"
+Issues     = "https://github.com/assoulsidali/mathplotgame/issues"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/mathplotgame"]
-include = ["src/mathplotgame/data/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
