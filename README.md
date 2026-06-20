@@ -1,5 +1,10 @@
 # plotlive
 
+[![PyPI](https://img.shields.io/pypi/v/plotlive)](https://pypi.org/project/plotlive/)
+[![Python](https://img.shields.io/pypi/pyversions/plotlive)](https://pypi.org/project/plotlive/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/assoulsidali/plotlive/actions/workflows/ci.yml/badge.svg)](https://github.com/assoulsidali/plotlive/actions)
+
 Interactive matplotlib-compatible graphs rendered with pygame. Write the same code you'd write for matplotlib — get a live, interactive window instead of a static plot.
 
 Built for ML tutorial creators who want to explain concepts step by step with pan, zoom, hover tooltips, and frame-by-frame animation.
@@ -7,9 +12,15 @@ Built for ML tutorial creators who want to explain concepts step by step with pa
 ## Install
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip3 install -e .
+pip install plotlive
+```
+
+For animation export:
+
+```bash
+pip install plotlive[gif]     # GIF export  (Pillow)
+pip install plotlive[video]   # MP4 export  (imageio + ffmpeg)
+pip install plotlive[export]  # both
 ```
 
 ## Quick start
@@ -26,6 +37,36 @@ plt.ylabel('Loss')
 plt.title('Training Curve')
 plt.legend()
 plt.grid()
+plt.show()
+```
+
+---
+
+## Jupyter support
+
+`plt.show()` detects Jupyter automatically — no code changes needed.
+
+- **Static plots** are displayed as inline PNG images
+- **Animations** are exported as an animated GIF and displayed inline (requires `pip install plotlive[gif]`), with MP4 as fallback
+
+```python
+import plotlive.pyplot as plt
+import numpy as np
+
+# Static — displays inline
+plt.plot(np.arange(50), np.exp(-np.arange(50)/10), label='loss')
+plt.legend(); plt.grid()
+plt.show()
+```
+
+```python
+# Animation — exports GIF and displays inline
+def update(frame):
+    plt.cla()
+    plt.plot(np.arange(frame), np.random.randn(frame).cumsum())
+    plt.title(f'Step {frame}')
+
+plt.animate(update, frames=30, interval=100)
 plt.show()
 ```
 
