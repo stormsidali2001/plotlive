@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://stormsidali2001.github.io/plotlive/</loc>
+         <lastmod>2026-06-22</lastmod>
+    </url>
+    <url>
+         <loc>https://stormsidali2001.github.io/plotlive/examples/</loc>
+         <lastmod>2026-06-22</lastmod>
+    </url>
+    <url>
+         <loc>https://stormsidali2001.github.io/plotlive/api/animation/</loc>
+         <lastmod>2026-06-22</lastmod>
+    </url>
+    <url>
+         <loc>https://stormsidali2001.github.io/plotlive/api/figure/</loc>
+         <lastmod>2026-06-22</lastmod>
+    </url>
+    <url>
+         <loc>https://stormsidali2001.github.io/plotlive/api/pyplot/</loc>
+         <lastmod>2026-06-22</lastmod>
+    </url>
+</urlset>
