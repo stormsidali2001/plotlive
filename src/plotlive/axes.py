@@ -235,7 +235,7 @@ class Axes:
         x = np.asarray(x, float)
         y1 = np.broadcast_to(np.asarray(y1, float), x.shape).copy()
         y2 = np.broadcast_to(np.asarray(y2, float), x.shape).copy()
-        xy = np.row_stack([
+        xy = np.vstack([
             np.column_stack([x, y1]),
             np.column_stack([x[::-1], y2[::-1]]),
         ])
@@ -352,11 +352,11 @@ class Axes:
             dn = density / max_d * half_w
             lbl = kwargs.get('label', '_nolegend_') if i == 0 else '_nolegend_'
             if vert:
-                xy = np.row_stack([np.column_stack([pos + dn, y_eval]),
-                                   np.column_stack([pos - dn[::-1], y_eval[::-1]])])
+                xy = np.vstack([np.column_stack([pos + dn, y_eval]),
+                                np.column_stack([pos - dn[::-1], y_eval[::-1]])])
             else:
-                xy = np.row_stack([np.column_stack([y_eval, pos + dn]),
-                                   np.column_stack([y_eval[::-1], pos - dn[::-1]])])
+                xy = np.vstack([np.column_stack([y_eval, pos + dn]),
+                                np.column_stack([y_eval[::-1], pos - dn[::-1]])])
             self.patches.append(Polygon(xy, color=c, alpha=alpha,
                                         edgecolor=c, linewidth=1, label=lbl))
             med = float(np.median(d))
