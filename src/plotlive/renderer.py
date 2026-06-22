@@ -117,10 +117,13 @@ class AxesRenderer:
                 data_l += (data_w - new_w) // 2
                 data_w = new_w
 
-        # axes_rect in figure-space so contains_screen_point works with
-        # figure-space mouse coordinates regardless of subplot position.
+        # axes_rect in figure-space so coordinate math works with figure-space
+        # mouse coordinates regardless of subplot position.
         off_l, off_t = self.ax_offset
         ax.transform.axes_rect = (off_l + data_l, off_t + data_t, data_w, data_h)
+        # panel_rect covers the full subplot area including tick/label margins,
+        # so hit-testing (hover, zoom, pan) works anywhere inside the panel.
+        ax.transform.panel_rect = (off_l, off_t, self.ax_w, self.ax_h)
 
         surface = pygame.Surface((self.ax_w, self.ax_h))
         surface.fill((255, 255, 255))

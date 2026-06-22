@@ -66,8 +66,23 @@ def test_reset_to_home():
 
 def test_contains():
     t = make_transform()
+    # panel_rect defaults to same as axes_rect on construction
+    t.panel_rect = t.axes_rect
     assert t.contains_screen_point(50, 25)
     assert not t.contains_screen_point(150, 25)
+
+
+def test_contains_uses_panel_rect():
+    # panel_rect is larger than axes_rect so hit-testing works across margins
+    t = make_transform()
+    t.axes_rect  = (65, 35, 100, 50)   # data area (inner)
+    t.panel_rect = (0,  0,  230, 135)  # full panel (outer)
+    # Inside data area — still hits
+    assert t.contains_screen_point(100, 60)
+    # In the left margin (tick labels area) — now hits via panel_rect
+    assert t.contains_screen_point(30, 60)
+    # Fully outside panel
+    assert not t.contains_screen_point(300, 200)
 
 
 import pytest

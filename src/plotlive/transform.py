@@ -18,8 +18,10 @@ class Transform:
     def __init__(self):
         self.xlim: tuple[float, float] = (0.0, 1.0)
         self.ylim: tuple[float, float] = (0.0, 1.0)
-        # (left, top, width, height) in screen pixels — set by renderer before each draw
+        # data area only — used for coordinate math (left, top, w, h) in screen px
         self.axes_rect: tuple[int, int, int, int] = (0, 0, 100, 100)
+        # full subplot panel including margins — used for hit-testing
+        self.panel_rect: tuple[int, int, int, int] = (0, 0, 100, 100)
         self._home_xlim: tuple[float, float] = (0.0, 1.0)
         self._home_ylim: tuple[float, float] = (0.0, 1.0)
         self.xscale: str = 'linear'
@@ -156,7 +158,7 @@ class Transform:
         self.ylim = self._home_ylim
 
     def contains_screen_point(self, sx: float, sy: float) -> bool:
-        left, top, w, h = self.axes_rect
+        left, top, w, h = self.panel_rect
         return left <= sx <= left + w and top <= sy <= top + h
 
     def auto_scale(
